@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🏆 Scorebord</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Comic Sans MS;
+      background: orange;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🏆 Scorebord</h1>
+
+<div id="scores"></div>
+
+<a href="index.html">
+  <button>🔄 Opnieuw spelen</button>
+</a>
+
+<script>
+let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+// sorteer op snelste tijd
+scores.sort((a, b) => a.time - b.time);
+
+let html = "";
+scores.forEach((s, i) => {
+  html += "<p>" + (i+1) + ". " + s.name + " - " + s.time + " sec</p>";
+});
+
+document.getElementById("scores").innerHTML = html;
+</script>
+
+</body>
+</html>
