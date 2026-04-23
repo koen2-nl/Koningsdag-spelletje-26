@@ -3,63 +3,7 @@
 <head>
   <title>🎉 Klik Spel Deluxe</title>
 
-  <style>
-    body {
-      text-align: center;
-      font-family: "Comic Sans MS", cursive;
-      background: linear-gradient(orange, gold);
-      color: white;
-      overflow: hidden;
-    }
-
-    h1 {
-      animation: bounce 1s infinite alternate;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-10px); }
-    }
-
-    button {
-      font-size: 30px;
-      padding: 20px 40px;
-      border-radius: 30px;
-      border: none;
-      margin-top: 20px;
-      background: white;
-      color: orange;
-      cursor: pointer;
-      animation: pulse 1.5s infinite;
-      box-shadow: 0 0 20px rgba(255,255,255,0.8);
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    #score, #time {
-      font-size: 24px;
-      margin-top: 15px;
-    }
-
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      top: 0;
-      animation: fall 3s linear forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(720deg);
-      }
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
