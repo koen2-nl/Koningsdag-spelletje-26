@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Koningsdag Spel 🎉</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
+  <h1>🎉 Koningsdag Spel 🎉</h1>
+  <p>Druk op de knop en kijk of je wint!</p>
+
+  <button onclick="playGame()">Speel (€1)</button>
+
+  <p id="result"></p>
+
+  <script>
+    function playGame() {
+      let win = Math.random() < 0.1; // 10% kans
+      if (win) {
+        document.getElementById("result").innerText = "🎉 Je hebt gewonnen!";
+      } else {
+        document.getElementById("result").innerText = "😢 Helaas, probeer opnieuw!";
+      }
+    }
+  </script>
+</body>
+</html>
