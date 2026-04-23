@@ -1,87 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>🎉 Draai & Win! 🎉</title>
+  <title>🎉 Klik Spel</title>
   <style>
     body {
       text-align: center;
-      font-family: "Comic Sans MS", cursive;
-      background: linear-gradient(to bottom, orange, yellow);
+      font-family: Comic Sans MS;
+      background: orange;
       color: white;
     }
 
-    h1 {
-      font-size: 40px;
-    }
-
-    #wheel {
-      margin: 30px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 8px dashed white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      background: conic-gradient(
-        #ff4d4d 0% 45%,
-        #ff9933 45% 90%,
-        #66ff66 90% 100%
-      );
-      transition: transform 3s ease-out;
-    }
-
     button {
-      padding: 15px 30px;
-      font-size: 20px;
-      border: none;
+      font-size: 30px;
+      padding: 20px;
       border-radius: 20px;
-      background: white;
-      color: orange;
-      cursor: pointer;
-      box-shadow: 0 5px 0 #cc8400;
-    }
-
-    button:active {
-      box-shadow: none;
-      transform: translateY(5px);
-    }
-
-    #result {
-      font-size: 24px;
+      border: none;
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-<h1>🎡 Draai & Win! 🎡</h1>
-<p>Druk op de knop en kijk of jij geluk hebt! 🍀</p>
+<h1>🎯 Klik zo snel mogelijk!</h1>
+<p>Klik 10 keer zo snel als je kan!</p>
 
-<div id="wheel">🎁</div>
+<button onclick="clickGame()">KLIK!</button>
 
-<button onclick="spin()">🎯 DRAAI!</button>
-
-<p id="result"></p>
+<p id="score">0 / 10</p>
+<p id="time"></p>
 
 <script>
-function spin() {
-  let wheel = document.getElementById("wheel");
+let clicks = 0;
+let startTime;
 
-  let rotation = 1440 + Math.random() * 360;
-  wheel.style.transform = "rotate(" + rotation + "deg)";
+function clickGame() {
+  if (clicks === 0) {
+    startTime = new Date().getTime();
+  }
 
-  // kleine winkans (3%)
-  let win = Math.random() < 0.03;
+  clicks++;
+  document.getElementById("score").innerText = clicks + " / 10";
 
-  setTimeout(() => {
-    if (win) {
-      document.getElementById("result").innerText = "🎉 YES! Jij hebt gewonnen! 🥳";
-    } else {
-      document.getElementById("result").innerText = "😢 Oeps! Probeer nog eens!";
-    }
-  }, 3000);
+  if (clicks === 10) {
+    let endTime = new Date().getTime();
+    let time = ((endTime - startTime) / 1000).toFixed(2);
+
+    document.getElementById("time").innerText = "⏱️ Tijd: " + time + " sec";
+
+    let name = prompt("Wat is je naam?");
+    let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+    scores.push({ name: name, time: time });
+    localStorage.setItem("scores", JSON.stringify(scores));
+
+    setTimeout(() => {
+      window.location.href = "score.html";
+    }, 1500);
+  }
 }
 </script>
 
